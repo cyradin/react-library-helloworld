@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Loader from 'react-loader';
-import booksList from '@actions/booksList';
+import { list } from '@actions/books';
 
 import Book from '@components/Books/Item';
 
@@ -10,11 +10,11 @@ class List extends React.Component {
         this.state = {};
     }
 
-    render() {
-        if (! this.props.loaded) {
-            this.loadBooks();
-        }
+    componentDidMount() {
+        this.loadBooks();
+    }
 
+    render() {
         var list = this.props.books,
             books = [];
 
@@ -25,21 +25,20 @@ class List extends React.Component {
         }
 
         return (
-            <Loader loaded={this.props.loaded}>
+            <Loader loaded={books.length > 0}>
                 { books }
             </Loader>
         );
     }
 
     loadBooks() {
-        booksList();
+        list();
     }
 }
 
 const mapStateToProps = function(store) {
     return {
-        books: store.books.data,
-        loaded: store.books.loaded
+        books: store.books,
     };
 }
 
