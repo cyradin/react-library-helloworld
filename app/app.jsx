@@ -34,6 +34,7 @@ ReactDOM.render(
         <Provider store={store}>
             <Router history={history}>
                 <Route path="/" component={App}>
+                    <Route path="/books" component={BooksList}/>
                     <Route path="/books/add" component={BooksView} action="add"/>
                     <Route path="/books/:id" component={BooksView}/>
                     <Route path="/books/:id/edit" component={BooksView} action="edit"/>

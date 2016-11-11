@@ -41,6 +41,7 @@ module.exports = {
         alias: {
             '@app': path.resolve(__dirname, '../app'),
             '@actions': path.resolve(__dirname, '../app/actions'),
+            '@actiontypes': path.resolve(__dirname, '../app/actions/actionTypes.js'),
             '@components': path.resolve(__dirname, '../app/components'),
             '@lib': path.resolve(__dirname, '../app/lib'),
             '@reducers': path.resolve(__dirname, '../app/reducers'),
