@@ -8,6 +8,9 @@ export default function(state = initialState, action) {
         case BOOKS_LIST:
             var newState = _.uniq(_.union(state, action.data), false, _.property('id'));
             return newState;
+        case BOOKS_VIEW:
+            var newState = _.uniq(_.union(state, [action.data]), false, _.property('id'));
+            return newState;
     }
 
     return state;
