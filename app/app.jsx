@@ -1,5 +1,8 @@
 import { Router, Route, Link, browserHistory } from 'react-router';
+import { Provider } from 'react-redux';
+import { syncHistoryWithStore } from 'react-router-redux';
 import DocumentTitle from 'react-document-title';
+import store from './store';
 
 import Header from '@components/Header';
 import Content from '@components/Content';
@@ -24,16 +27,20 @@ class App extends React.Component {
     }
 }
 
+const history = syncHistoryWithStore(browserHistory, store)
+
 ReactDOM.render(
     <DocumentTitle title="Super Library">
-        <Router history={browserHistory}>
-            <Route path="/" component={App}>
-                <Route path="/books/add" component={BooksView} action="add"/>
-                <Route path="/books/:id" component={BooksView}/>
-                <Route path="/books/:id/edit" component={BooksView} action="edit"/>
-                <Route path="*" component={ErrorComponent} code="404" />
-            </Route>
-        </Router>
+        <Provider store={store}>
+            <Router history={history}>
+                <Route path="/" component={App}>
+                    <Route path="/books/add" component={BooksView} action="add"/>
+                    <Route path="/books/:id" component={BooksView}/>
+                    <Route path="/books/:id/edit" component={BooksView} action="edit"/>
+                    <Route path="*" component={ErrorComponent} code="404" />
+                </Route>
+            </Router>
+        </Provider>
     </DocumentTitle>
     , document.getElementById('app')
 );
