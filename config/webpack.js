@@ -1,8 +1,12 @@
 var path = require('path');
 var webpack = require('webpack');
 module.exports = {
-    entry: ['webpack/hot/dev-server', 'webpack-hot-middleware/client?reload=true',
-        path.join(__dirname, '../app/app.jsx')
+    devtool: 'eval',
+    entry: [
+        'react-hot-loader/patch',
+        'webpack/hot/dev-server',
+        'webpack-hot-middleware/client',
+        path.join(__dirname, '../app/index.jsx')
     ],
     output: {
         path: path.resolve(__dirname, '../public'),
@@ -24,7 +28,7 @@ module.exports = {
                 loader: 'babel',
                 query: {
                     presets: ['es2015', 'es2017', 'react'],
-                    plugins: ['transform-runtime', 'transform-decorators-legacy', 'transform-class-properties']
+                    plugins: ['react-hot-loader/babel', 'transform-runtime', 'transform-decorators-legacy', 'transform-class-properties']
                 }
             },
             /* {
