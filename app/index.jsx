@@ -1,27 +1,27 @@
 import Root from '@app/root';
 import {AppContainer} from 'react-hot-loader';
 
-ReactDOM.render(
-    <AppContainer>
-        <Root/>
-    </AppContainer>
-    , document.getElementById('app')
-);
+
+const MOUNT_NODE = document.getElementById('app');
+
+const render = function () {
+    ReactDOM.render(
+        <AppContainer>
+            <Root/>
+        </AppContainer>
+        , MOUNT_NODE
+    );
+}
+
 
 // Hot Module Replacement API
 if (module.hot) {
     module.hot.accept('@app/root', function () {
-        ReactDOM.render(
-            <AppContainer>
-                <Root />
-            </AppContainer>,
-            document.getElementById('app')
-        );
+        setImmediate(function() {
+            ReactDOM.unmountComponentAtNode(MOUNT_NODE);
+            render();
+        });
     });
 }
-/*
-ReactDOM.render(
-    <Root />
-    , document.getElementById('app')
-);
-*/
+
+render();
