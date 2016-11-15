@@ -4,6 +4,7 @@ var path = require('path'),
     webpack = require('webpack'),
     webpackDevMiddleware = require('webpack-dev-middleware'),
     webpackHotMiddleware = require('webpack-hot-middleware');
+    apiRouter = require('./api/router');
 
 // using webpack dev server for development
 if (process.env.NODE_ENV === 'dev') {
@@ -27,7 +28,9 @@ if (process.env.NODE_ENV === 'dev') {
     app.use(express.static(__dirname + '/public'));
 }
 
-app.get('*', function response(req, res) {
+app.use('/api', apiRouter);
+
+app.all('*', function response(req, res) {
     res.sendFile(path.join(__dirname, 'public/index.html'));
 });
 
