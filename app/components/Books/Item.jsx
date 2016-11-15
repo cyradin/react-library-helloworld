@@ -10,11 +10,6 @@ var classes = new BEMHelper({
 });
 
 class Item extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {};
-    }
-
     render() {
         var book = this.loadBook(),
             bookElement;

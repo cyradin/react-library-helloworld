@@ -31,15 +31,17 @@ module.exports = {
                     plugins: ['react-hot-loader/babel', 'transform-runtime', 'transform-decorators-legacy', 'transform-class-properties']
                 }
             },
-            /* {
-              test: /\.css$/,
-              loader: 'style!css?modules&localIdentName=[name]---[local]---[hash:base64:5]'
-            }*/
+            { 
+                test: /\.css$/,
+                loader: "style-loader!css-loader!less-loader"
+            }
         ]
     },
     externals: {
         'react': 'React',
         'react-dom': 'ReactDOM',
+        'moment': 'moment',
+        '_': 'underscore'
     },
     resolve: {
         alias: {
