@@ -50,6 +50,7 @@ module.exports = {
             '@actiontypes': path.resolve(__dirname, '../app/actions/actionTypes.js'),
             '@components': path.resolve(__dirname, '../app/components'),
             '@lib': path.resolve(__dirname, '../app/lib'),
+            '@mixins': path.resolve(__dirname, '../app/mixins'),
             '@reducers': path.resolve(__dirname, '../app/reducers'),
         },
         extensions: ['', '.js', '.jsx']

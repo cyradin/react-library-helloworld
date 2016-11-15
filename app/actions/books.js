@@ -28,9 +28,26 @@ export function view(id) {
 }
 
 export function edit(data) {
-
+    setTimeout(function() {
+        store.dispatch({
+            type: BOOKS_EDIT,
+            data: data
+        })
+    });
 }
 
-export function add() {
-
+export function add(data) {
+    setTimeout(function() {
+        var max = 0;
+        for (var i = 0; i < testData.length; i++) {
+            if (max < testData[i].id) {
+                max = testData[i].id;
+            }
+        }
+        data.id = ++max;
+        store.dispatch({
+            type: BOOKS_ADD,
+            data: data
+        })
+    });
 }
