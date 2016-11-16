@@ -26,10 +26,7 @@ module.exports = {
                 test: /\.js/,
                 exclude: /node_modules/,
                 loader: 'babel',
-                query: {
-                    presets: ['es2015', 'es2017', 'react'],
-                    plugins: ['react-hot-loader/babel', 'transform-runtime', 'transform-decorators-legacy', 'transform-class-properties']
-                }
+                query: {}
             },
             { 
                 test: /\.css$/,
