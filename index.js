@@ -8,7 +8,7 @@ var path = require('path'),
 
 // using webpack dev server for development
 if (process.env.NODE_ENV === 'development') {
-    const config = require(path.resolve(__dirname, './config/webpack'));
+    const config = require(path.resolve(__dirname, 'webpack.config.js'));
     const compiler = webpack(config);
     const middleware = webpackDevMiddleware(compiler, {
         publicPath: config.output.publicPath,
