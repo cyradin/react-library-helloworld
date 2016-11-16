@@ -16,7 +16,7 @@ var config = {
                 query: {}
             },
             { 
-                test: /\.css$/,
+                test: /\.less$/,
                 loader: "style-loader!css-loader!less-loader"
             }
         ]
@@ -29,13 +29,13 @@ var config = {
     },
     resolve: {
         alias: {
-            '@app': path.resolve(__dirname, './app'),
-            '@actions': path.resolve(__dirname, './app/actions'),
-            '@actiontypes': path.resolve(__dirname, './app/actions/actionTypes.js'),
-            '@components': path.resolve(__dirname, './app/components'),
-            '@lib': path.resolve(__dirname, './app/lib'),
-            '@mixins': path.resolve(__dirname, './app/mixins'),
-            '@reducers': path.resolve(__dirname, './app/reducers'),
+            '@app': path.resolve(__dirname, './client/app'),
+            '@actions': path.resolve(__dirname, './client/app/actions'),
+            '@actiontypes': path.resolve(__dirname, './client/app/actions/actionTypes.js'),
+            '@components': path.resolve(__dirname, './client/app/components'),
+            '@lib': path.resolve(__dirname, './client/app/lib'),
+            '@mixins': path.resolve(__dirname, './client/app/mixins'),
+            '@reducers': path.resolve(__dirname, './client/app/reducers'),
         },
         extensions: ['', '.js', '.jsx']
     }
@@ -50,7 +50,8 @@ switch (process.env.NODE_ENV) {
                 'react-hot-loader/patch',
                 'webpack/hot/dev-server',
                 'webpack-hot-middleware/client',
-                path.join(__dirname, './app/index.jsx')
+                path.join(__dirname, './client/app/index.jsx'),
+                path.join(__dirname, './client/styles/index.less')
             ],
             plugins: [
                 new webpack.optimize.OccurenceOrderPlugin(),
@@ -66,7 +67,8 @@ switch (process.env.NODE_ENV) {
     default:
         config = Object.assign(config, {
             entry: [
-                path.join(__dirname, './app/index.jsx')
+                path.join(__dirname, './client/app/index.jsx'),
+                path.join(__dirname, './client/styles/index.less')
             ],
             plugins: [
                 new webpack.optimize.UglifyJsPlugin(),

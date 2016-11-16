@@ -7,7 +7,7 @@ var child = new (forever.Monitor)('./index.js', {
     watch: true,               // Value indicating if we should watch files.
     watchIgnoreDotFiles: null, // Whether to ignore file starting with a '.'
     watchIgnorePatterns: [
-        'app',
+        'client',
         'public',
         'node_modules'
     ],
