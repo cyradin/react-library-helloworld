@@ -3,9 +3,9 @@ var webpack = require('webpack');
 
 var config = {
     output: {
-        path: path.resolve(__dirname, './public'),
+        path: path.resolve(__dirname, './public/js/'),
         filename: 'bundle.js',
-        publicPath: '/'
+        publicPath: '/js/'
     },
     module: {
         loaders: [

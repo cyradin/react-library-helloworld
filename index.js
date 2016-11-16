@@ -23,10 +23,9 @@ if (process.env.NODE_ENV === 'development') {
     });
     app.use(middleware);
     app.use(webpackHotMiddleware(compiler));
-    // or express.static on production
-} else {
-    app.use(express.static(__dirname + '/public'));
 }
+
+app.use(express.static(__dirname + '/public'));
 
 app.use('/api', apiRouter);
 
