@@ -1,6 +1,7 @@
 var express = require('express'),
     router = express.Router(),
-    _ = require('underscore');
+    _ = require('underscore'),
+    utils = require('../../lib/utils');
 
 var testData = [
     {id: 1, name: 'Seven', author: 'John Doe', readDate: '2016-01-15', file: '/img/1.jpg', cover: '/img/1_cover.jpg', allowDownload: true},
@@ -10,7 +11,20 @@ var testData = [
 ];
 
 router.get('/', function(req, res) {
-    res.json({ success: true, data: testData });
+    var serverUrl = utils.serverUrl(req),
+        books = JSON.parse(JSON.stringify(testData));
+
+    for (var i = 0; i < books.length; i++) {
+        if (books[i].file) {
+            books[i].file = serverUrl + books[i].file;
+        }
+
+        if (books[i].cover) {
+            books[i].cover = serverUrl + books[i].cover;
+        }
+    }
+
+    res.json({ success: true, data: books });
 });
 
 router.post('/add', function(req, res) {
