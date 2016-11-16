@@ -1,20 +1,34 @@
 var express = require('express'),
-    router = express.Router();
+    router = express.Router(),
+    _ = require('underscore');
+
+var testData = [
+    {id: 1, name: 'Seven', author: 'John Doe', readDate: '2016-01-15', file: '/img/1.jpg', cover: '/img/1_cover.jpg', allowDownload: true},
+    {id: 2, name: 'Hello', author: 'John Doe', readDate: '2016-02-15', cover: '/img/2_cover.jpg', allowDownload: true},
+    {id: 3, name: 'World', author: 'John Doe', readDate: '2016-03-15', file: '/img/3.jpg', allowDownload: false},
+    {id: 4, name: 'Harry Potter', author: 'John Doe', readDate: '2016-04-15', file: '/img/4.jpg', cover: '/img/4_cover.jpg', allowDownload: false}
+];
 
 router.get('/', function(req, res) {
-    res.send('list');
+    res.json({ success: true, data: testData });
 });
 
 router.post('/add', function(req, res) {
-    res.send('add');
+    res.json({ success: true, data: {id: 5 } });
 });
 
-router.get('/:id(\\d+)', function(req, res) {
-    res.send('show ' + req.params.id);
+router.get('/:id(\\d+)', function(req, res, next) {
+    var id = parseInt(req.params.id),
+        book = _.findWhere(testData, {id: id});
+    if (book) {
+        res.json({ success: true, data: book });
+    } else {
+        next();
+    }
 });
 
 router.post('/:id/edit', function(req, res) {
-    res.send('edit ' + req.params.id);
+    res.json({ success: true, data: {id: 1 } });
 });
 
 module.exports = router;

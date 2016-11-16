@@ -9,9 +9,11 @@
   "author": "petrosyan international co.",
   "license": "MIT",
   "dependencies": {
+    "browser-request": "^0.3.3",
     "core-decorators": "^0.14.0",
     "express": "^4.14.0",
     "forever-monitor": "^1.7.1",
+    "memory-cache": "^0.1.6",
     "react-bem-helper": "^1.2.0",
     "react-core-decorators": "^0.1.6",
     "react-datepicker": "^0.34.0",

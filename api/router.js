@@ -5,8 +5,7 @@ var express = require('express'),
 router.use('/v1', v1router);
 
 router.all('*', function(req, res) {
-    res.status(404);
-    res.send('404 Not Found');
+    res.status(404).json({ success: false, error: '404 Not Found' });
 })
 
 module.exports = router;

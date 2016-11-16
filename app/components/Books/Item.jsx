@@ -11,7 +11,7 @@ var classes = new BEMHelper({
 
 class Item extends React.Component {
     render() {
-        var book = this.loadBook(),
+        var book = this.getBook(),
             bookElement;
         if (book) {
             var cover = <img src={book.cover || 'http://placehold.it/500x500'}/>
@@ -53,17 +53,24 @@ class Item extends React.Component {
         );
     }
 
+    componentWillMount() {
+        this.loadBook();
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (this.props.id != nextProps.id) {
+            this.loadBook();
+        }
+    }
+
     loadBook() {
-        if (this.props.book) {
-            return this.props.book;
-        }
+        var id = this.props.id || this.props.params.id;
+        return this.getBook() || this.props.dispatch(view(id));
+    }
 
-        var id = parseInt(this.props.params.id);
-        if (! id) {
-            return; // TODO 404 redirect
-        }
-
-        return _.findWhere(this.props.books, {id: id}) || this.props.dispatch(view(id));
+    getBook() {
+        var id = parseInt(this.props.id || this.props.params.id);
+        return _.findWhere(this.props.books, {id: id});
     }
 }
 

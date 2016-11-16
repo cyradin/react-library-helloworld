@@ -50,7 +50,7 @@ class Edit extends React.Component {
 
         switch (this.props.route.action) {
             case 'edit':
-                if (book = this.loadBook()) {
+                if (book = this.getBook()) {
                     idInput = <input type="hidden" name="id" value={id} />;
                 }
                 break;
@@ -128,13 +128,14 @@ class Edit extends React.Component {
         }
     }
 
-    loadBook() {
-        var id = parseInt(this.props.params.id);
-        if (! id) {
-            return; // TODO 404 redirect
-        }
+    getBook(id) {
+        var id = parseInt(id || this.props.params.id);
+        return _.findWhere(this.props.books, {id: id});
+    }
 
-        return _.findWhere(this.props.books, {id: id}) || this.props.dispatch(view(id));
+    loadBook(id) {
+        var id = parseInt(id || this.props.params.id);
+        return this.getBook(id) || this.props.dispatch(view(id));
     }
 
     @autobind

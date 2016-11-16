@@ -20,7 +20,7 @@ class List extends React.Component {
 
         for (var i = 0; i < list.length; i++) {
             books.push(
-                <Book key={list[i].id} book={list[i]}/>
+                <Book key={list[i].id} id={list[i].id}/>
             );
         }
 
