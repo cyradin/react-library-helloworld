@@ -10,44 +10,69 @@ var testData = [
 ];
 
 export function list() {
-    setTimeout(function() {
-        store.dispatch({
-            type: BOOKS_LIST,
-            data: testData
-        })
-    }, 1000);
+    return function(dispatch) {
+        setTimeout(function() {
+            dispatch(listSync());
+        }, 1000);
+    }
 }
 
 export function view(id) {
-    setTimeout(function() {
-        store.dispatch({
-            type: BOOKS_VIEW,
-            data: _.findWhere(testData, {id: id})
-        })
-    }, 1000);
+    return function(dispatch) {
+        setTimeout(function() {
+            dispatch(viewSync(id));
+        }, 1000);
+    }
 }
 
 export function edit(data) {
-    setTimeout(function() {
-        store.dispatch({
-            type: BOOKS_EDIT,
-            data: data
-        })
-    });
+    return function(dispatch) {
+        setTimeout(function() {
+            dispatch(editSync(data));
+        });
+    }
 }
 
 export function add(data) {
-    setTimeout(function() {
-        var max = 0;
-        for (var i = 0; i < testData.length; i++) {
-            if (max < testData[i].id) {
-                max = testData[i].id;
-            }
+    return function(dispatch) {
+        setTimeout(function() {
+            dispatch(addSync(data));
+        });
+    };
+}
+
+export function listSync() {
+    return {
+        type: BOOKS_LIST,
+        data: testData
+    }
+}
+
+export function viewSync(id) {
+    return {
+        type: BOOKS_VIEW,
+        data: _.findWhere(testData, {id: id})
+    }
+}
+
+
+export function editSync(data) {
+    return {
+        type: BOOKS_EDIT,
+        data: data
+    }
+}
+
+export function addSync(data) {
+    var max = 0;
+    for (var i = 0; i < testData.length; i++) {
+        if (max < testData[i].id) {
+            max = testData[i].id;
         }
-        data.id = ++max;
-        store.dispatch({
-            type: BOOKS_ADD,
-            data: data
-        })
-    });
+    }
+    data.id = ++max;
+    return {
+        type: BOOKS_ADD,
+        data: data
+    }
 }

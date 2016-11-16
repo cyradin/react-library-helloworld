@@ -7,7 +7,7 @@ var path = require('path'),
     apiRouter = require('./api/router');
 
 // using webpack dev server for development
-if (process.env.NODE_ENV === 'dev') {
+if (process.env.NODE_ENV === 'development') {
     const config = require(path.resolve(__dirname, './config/webpack'));
     const compiler = webpack(config);
     const middleware = webpackDevMiddleware(compiler, {

@@ -32,7 +32,7 @@ class List extends React.Component {
     }
 
     loadBooks() {
-        list();
+        this.props.dispatch(list());
     }
 }
 

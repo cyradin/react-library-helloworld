@@ -63,7 +63,7 @@ class Item extends React.Component {
             return; // TODO 404 redirect
         }
 
-        return _.findWhere(this.props.books, {id: id}) || view(id);
+        return _.findWhere(this.props.books, {id: id}) || this.props.dispatch(view(id));
     }
 }
 

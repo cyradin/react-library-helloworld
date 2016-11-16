@@ -134,7 +134,7 @@ class Edit extends React.Component {
             return; // TODO 404 redirect
         }
 
-        return _.findWhere(this.props.books, {id: id}) || view(id);
+        return _.findWhere(this.props.books, {id: id}) || this.props.dispatch(view(id));
     }
 
     @autobind
@@ -142,11 +142,11 @@ class Edit extends React.Component {
         e.preventDefault();
         switch (this.props.route.action) {
             case 'add':
-                add(this.formData)
+                this.props.dispatch(add(this.formData))
                 break;
             case 'edit':
                 this.formData.id = parseInt(this.props.params.id);
-                edit(this.formData)
+                this.props.dispatch(edit(this.formData))
         }
     }
 
