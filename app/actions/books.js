@@ -1,4 +1,3 @@
-import store from '@app/store';
 import { BOOKS_LIST, BOOKS_EDIT, BOOKS_ADD, BOOKS_VIEW } from '@actiontypes';
 import _ from 'underscore';
 
