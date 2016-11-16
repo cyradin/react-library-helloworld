@@ -13,7 +13,7 @@ var errors = {
     }
 }
 
-export default class Error extends React.Component {
+export default class NoRoute extends React.Component {
     constructor(props) {
         super(props);
     }

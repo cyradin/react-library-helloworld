@@ -4,7 +4,7 @@ import App from '@components/App';
 import BooksView from '@components/Books/Item';
 import BooksEdit from '@components/Books/Edit';
 import BooksList from '@components/Books/List';
-import ErrorComponent from '@components/Error';
+import NoRouteComponent from '@components/NoRoute';
 
 const routes = (
     <Route path="/" component={App}>
@@ -12,7 +12,7 @@ const routes = (
         <Route path="/books/add" component={BooksEdit} action="add"/>
         <Route path="/books/:id" component={BooksView}/>
         <Route path="/books/:id/edit" component={BooksEdit} action="edit"/>
-        <Route path="*" component={ErrorComponent} code="404" />
+        <Route path="*" component={NoRouteComponent} code="404" />
     </Route>
 );
 
