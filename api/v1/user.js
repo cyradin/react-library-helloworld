@@ -1,13 +1,12 @@
 var express = require('express'),
     router = express.Router(),
-    _ = require('underscore'),
-    utils = require('../../lib/utils');
+    _ = require('underscore');
 
 var testData = [
     { id: 1, username: 'admin', password: '1234' },
 ];
 
-router.post('/login', function(req, res) {
+router.post('/login', function (req, res) {
     res.json({ success: true });
 });
 

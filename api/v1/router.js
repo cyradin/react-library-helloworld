@@ -3,8 +3,8 @@ var express = require('express'),
     booksRouter = require('./books'),
     userRouter = require('./user');
 
-router.all('*', function (req, res, next) {
-    console.log('authCheck');
+// api key check
+router.use(function (req, res, next) {
     next();
 })
 
