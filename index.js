@@ -1,4 +1,5 @@
 var path = require('path'),
+    fs = require('fs'),
     express = require('express'),
     app = express(),
     bodyParser = require('body-parser'),
@@ -29,6 +30,12 @@ if (process.env.NODE_ENV === 'development') {
     app.use(webpackHotMiddleware(compiler));
 }
 
+
+var middlewares = fs.readdirSync('middlewares');
+for (var i = 0; i < middlewares.length; i++) {
+    app.use(require(path.resolve('./middlewares/', middlewares[i])));
+}
+
 app.use(express.static(__dirname + '/public'));
 
 app.use('/api', apiRouter);
@@ -42,3 +49,5 @@ var port = process.env.NODE_PORT || 3000;
 app.listen(port, function() {
     console.log('App listening on port ' + port);
 });
+
+module.exports = app;

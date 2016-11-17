@@ -31,7 +31,7 @@ var config = {
         alias: {
             '@app': path.resolve(__dirname, './client/app'),
             '@actions': path.resolve(__dirname, './client/app/actions'),
-            '@actiontypes': path.resolve(__dirname, './client/app/actions/actionTypes.js'),
+            '@actiontypes': path.resolve(__dirname, './client/app/actions/action_types.js'),
             '@components': path.resolve(__dirname, './client/app/components'),
             '@lib': path.resolve(__dirname, './client/app/lib'),
             '@mixins': path.resolve(__dirname, './client/app/mixins'),
