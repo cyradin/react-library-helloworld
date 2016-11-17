@@ -30,7 +30,6 @@ if (process.env.NODE_ENV === 'development') {
     app.use(webpackHotMiddleware(compiler));
 }
 
-
 var middlewares = fs.readdirSync('middlewares');
 for (var i = 0; i < middlewares.length; i++) {
     app.use(require(path.resolve('./middlewares/', middlewares[i])));

@@ -6,7 +6,7 @@ var express = require('express'),
 router.use('/v1', v1router);
 
 // 404 for not found api routes
-router.all('*', function (req, res, next) {
+router.use(function (req, res, next) {
     var err = new errors.Http404Error();
     next(err);
 })
@@ -14,7 +14,7 @@ router.all('*', function (req, res, next) {
 // api error handler
 router.use(function (err, req, res, next) {
     if (err instanceof Error) {
-        res.status = err.status;
+        res.status(err.status);
         res.json({ success: false, error: { code: err.code, message: err.message } });
     }
     next();

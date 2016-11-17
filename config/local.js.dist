@@ -1,0 +1,9 @@
+module.exports = {
+    jwt: {
+        secret: 'helloworld',
+        options: {
+            algorithm: 'HS256',
+            expiresIn: 600,
+        }
+    }
+}
