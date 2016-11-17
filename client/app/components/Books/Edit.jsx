@@ -34,9 +34,7 @@ class Edit extends React.Component {
 
     render() {
         var loaded = false,
-            book,
-            id,
-            idInput;
+            book;
 
         var emptybook = {
             id: null,
@@ -48,19 +46,11 @@ class Edit extends React.Component {
             cover: ''
         }
 
-        switch (this.props.route.action) {
-            case 'edit':
-                if (book = this.getBook()) {
-                    idInput = <input type="hidden" name="id" value={id} />;
-                }
-                break;
-        }
         book = Object.assign(emptybook, book);
 
         return (
             <Loader loaded={ (!!book.id) || this.props.route.action == 'add'} >
                 <form {...classes()} onChange={this.updateFormData.bind(this)} onSubmit={this.onSubmit}>
-                    {idInput}
                     <div {...classes('field')}>
                         <label {...classes('label')}>Book name</label>
                         <input

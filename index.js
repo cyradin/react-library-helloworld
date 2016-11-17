@@ -1,10 +1,14 @@
 var path = require('path'),
     express = require('express'),
     app = express(),
+    bodyParser = require('body-parser'),
     webpack = require('webpack'),
     webpackDevMiddleware = require('webpack-dev-middleware'),
     webpackHotMiddleware = require('webpack-hot-middleware');
     apiRouter = require('./api/router');
+
+// parse application/json
+app.use(bodyParser.json());
 
 // using webpack dev server for development
 if (process.env.NODE_ENV === 'development') {

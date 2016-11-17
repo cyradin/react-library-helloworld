@@ -3,7 +3,8 @@ import request from 'browser-request';
 const API_VERSION = 'v1';
 
 var url = {
-    books: '/api/' + API_VERSION + '/books'
+    books: '/api/' + API_VERSION + '/books',
+    user: '/api/' + API_VERSION + '/user'
 }
 
 var defaults = { method: 'GET', json: true };
@@ -30,12 +31,20 @@ var api = {
         view: function (id, callback) {
             sendRequest({ url: url.books + '/' + id }, callback);
         },
-        edit: function (data) {
+        edit: function (data, callback) {
             sendRequest({ url: url.books + '/' + data.id + '/edit', json: data, method: 'POST' }, callback);
         },
-        add: function () {
+        add: function (callback) {
             sendRequest({ url: url.books + '/add', json: data, method: 'POST' }, callback);
         }
+    },
+    user: {
+        login: function (data, callback) {
+            sendRequest({ url: url.user + '/login', json: data, method: 'POST' }, callback);
+        },
+        logout: function (callback) {
+            sendRequest({ url: url.user + '/logout', json: true, method: 'POST' }, callback);
+        },
     }
 }
 

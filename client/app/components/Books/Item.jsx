@@ -22,7 +22,7 @@ class Item extends React.Component {
                 : '';
             var edit = '';
 
-            if (this.props.user.isAuthorized) {
+            if (this.props.user.authorized) {
                 edit = (
                     <div {...classes('edit')}>
                         <Link to={`/books/${book.id}/edit`}>Edit</Link>
@@ -69,6 +69,9 @@ class Item extends React.Component {
     }
 
     getBook() {
+        if (this.props.book) {
+            return this.props.book;
+        }
         var id = parseInt(this.props.id || this.props.params.id);
         return _.findWhere(this.props.books, {id: id});
     }

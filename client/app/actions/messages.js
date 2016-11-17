@@ -29,7 +29,6 @@ export function showSync(data) {
 }
 
 export function dismissSync(id) {
-    console.log(id);
     return {
         type: MESSAGE_DISMISS,
         data: id

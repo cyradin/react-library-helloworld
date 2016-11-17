@@ -1,5 +1,5 @@
 var initialState = {
-    isAuthorized: true
+    authorized: false
 };
 
 export default function(state = initialState, action) {
