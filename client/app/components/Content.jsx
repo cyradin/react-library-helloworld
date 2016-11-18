@@ -17,7 +17,7 @@ class Content extends React.Component {
 
 const mapStateToProps = function(store) {
     return {
-        user: store.user,
+        auth: store.auth,
     };
 }
 

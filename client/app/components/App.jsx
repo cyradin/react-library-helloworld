@@ -1,17 +1,33 @@
+import Loader from 'react-loader';
+import { connect } from 'react-redux';
+
 import Header from '@components/Header';
 import Content from '@components/Content';
 import Footer from '@components/Footer';
+import { check } from '@actions/auth';
 
-export default class App extends React.Component {
+class App extends React.Component {
+    componentWillMount() {
+        this.props.dispatch(check(this.props.auth.refreshToken));
+    }
+
     render() {
         return (
-            <div>
+            <Loader loaded={this.props.auth.checked}>
                 <Header />
                 <Content>
                     { this.props.children }
                 </Content>
                 <Footer />
-            </div>
+            </Loader>
         );
     }
 }
+
+const mapStateToProps = function(store) {
+    return {
+        auth: store.auth,
+    };
+}
+
+export default connect(mapStateToProps)(App);

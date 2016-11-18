@@ -22,7 +22,7 @@ class Item extends React.Component {
                 : '';
             var edit = '';
 
-            if (this.props.user.authorized) {
+            if (this.props.auth.authorized) {
                 edit = (
                     <div {...classes('edit')}>
                         <Link to={`/books/${book.id}/edit`}>Edit</Link>
@@ -80,7 +80,7 @@ class Item extends React.Component {
 const mapStateToProps = function(store) {
     return {
         books: store.books,
-        user: store.user
+        auth: store.auth
     };
 }
 

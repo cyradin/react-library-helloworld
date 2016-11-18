@@ -153,7 +153,7 @@ class Edit extends React.Component {
 const mapStateToProps = function(store) {
     return {
         books: store.books,
-        user: store.user
+        auth: store.auth
     };
 }
 

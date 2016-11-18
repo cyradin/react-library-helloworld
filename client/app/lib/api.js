@@ -3,8 +3,8 @@ import request from 'browser-request';
 const API_VERSION = 'v1';
 
 var url = {
+    auth: '/api/' + API_VERSION + '/auth',
     books: '/api/' + API_VERSION + '/books',
-    user: '/api/' + API_VERSION + '/user'
 }
 
 var defaults = { method: 'GET', json: true };
@@ -24,6 +24,17 @@ function sendRequest (options, callback) {
 }
 
 var api = {
+    auth: {
+        login: function (data, callback) {
+            sendRequest({ url: url.auth + '/login', json: data, method: 'POST' }, callback);
+        },
+        logout: function (callback) {
+            sendRequest({ url: url.auth + '/logout', json: true, method: 'POST' }, callback);
+        },
+        check: function (data, callback) {
+            sendRequest({ url: url.auth + '/check', json: data, method: 'POST' }, callback);
+        }
+    },
     books: {
         list: function (callback) {
             sendRequest({ url: url.books }, callback);
@@ -38,14 +49,6 @@ var api = {
             sendRequest({ url: url.books + '/add', json: data, method: 'POST' }, callback);
         }
     },
-    user: {
-        login: function (data, callback) {
-            sendRequest({ url: url.user + '/login', json: data, method: 'POST' }, callback);
-        },
-        logout: function (callback) {
-            sendRequest({ url: url.user + '/logout', json: true, method: 'POST' }, callback);
-        },
-    }
 }
 
 export default api;

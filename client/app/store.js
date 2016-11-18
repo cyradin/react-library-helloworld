@@ -4,14 +4,14 @@ import thunk from 'redux-thunk';
 
 import booksReducer from '@reducers/books';
 import messagesReducer from '@reducers/messages';
-import userReducer from '@reducers/user';
+import authReducer from '@reducers/auth';
 
 const store = createStore(
   combineReducers({
     routing: routerReducer,
+    auth: authReducer,
     books: booksReducer,
     messages: messagesReducer,
-    user: userReducer
   }),
   applyMiddleware(thunk)
 )

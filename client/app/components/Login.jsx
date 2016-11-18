@@ -4,7 +4,7 @@ import { mixin } from 'react-core-decorators';
 import { autobind } from 'core-decorators';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
-import {login } from '@actions/user';
+import {login } from '@actions/auth';
 
 var classes = new BEMHelper({
   name: 'form'
@@ -13,7 +13,7 @@ var classes = new BEMHelper({
 @mixin(formData)
 class Login extends React.Component {
     componentWillMount() {
-        if (this.props.user.authorized) {
+        if (this.props.auth.authorized) {
             browserHistory.goBack();
         }
     }
@@ -57,7 +57,7 @@ class Login extends React.Component {
 
 const mapStateToProps = function(store) {
     return {
-        user: store.user,
+        auth: store.auth,
     };
 }
 
