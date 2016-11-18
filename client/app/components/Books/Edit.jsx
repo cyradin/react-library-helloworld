@@ -4,12 +4,13 @@ import { connect } from 'react-redux';
 import _ from 'underscore';
 import { mixin } from 'react-core-decorators';
 import { autobind } from 'core-decorators';
+import formData from 'react-form-data';
 
 // import DatePicker from 'react-datepicker';
 // import moment from 'moment';
 
 import { view, add, edit } from '@actions/books';
-import formData from 'react-form-data';
+import auth from '@mixins/auth';
 
 // require('react-datepicker/dist/react-datepicker.css');
 
@@ -17,7 +18,7 @@ var classes = new BEMHelper({
   name: 'form'
 });
 
-@mixin(formData)
+@mixin(auth, formData)
 class Edit extends React.Component {
     constructor(props) {
         super(props);
@@ -46,7 +47,7 @@ class Edit extends React.Component {
             cover: ''
         }
 
-        book = Object.assign(emptybook, book);
+        book = Object.assign(emptybook, this.getBook());
 
         return (
             <Loader loaded={ (!!book.id) || this.props.route.action == 'add'} >
