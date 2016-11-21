@@ -1,5 +1,7 @@
 import request from 'browser-request';
 
+import store from '@app/store';
+
 const API_VERSION = 'v1';
 
 var url = {
@@ -15,6 +17,14 @@ function isSuccessful (response, data) {
 
 function sendRequest (options, callback) {
     options = Object.assign({}, defaults, options);
+    var state = store.getState();
+
+console.dir(state);
+    if (state.auth.authToken) {
+        options.headers = {
+            'Authorization': 'Bearer ' + state.auth.authToken
+        }
+    }
 
     request(options, function(err, response, data) {
         if (! err && isSuccessful(response, data)) {

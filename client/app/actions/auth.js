@@ -43,7 +43,7 @@ export function logoutSync() {
 
 export function checkSync(data) {
     if (! data.authorized) {
-        localStorage.removeItem('refreshtoken');
+        // localStorage.removeItem('refreshtoken'); //debug
     }
     return {
         type: AUTH_CHECK,

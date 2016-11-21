@@ -18,6 +18,8 @@
     "jsonwebtoken": "^7.1.9",
     "memory-cache": "^0.1.6",
     "merge-deep": "^3.0.0",
+    "passport": "^0.3.2",
+    "passport-jwt": "^2.2.1",
     "react-bem-helper": "^1.2.0",
     "react-core-decorators": "^0.1.6",
     "react-datepicker": "^0.34.0",
@@ -29,7 +31,8 @@
     "react-router-redux": "^4.0.7",
     "redux": "^3.6.0",
     "redux-thunk": "^2.1.0",
-    "underscore": "^1.8.3"
+    "underscore": "^1.8.3",
+    "uniqid": "^4.1.0"
   },
   "devDependencies": {
     "babel-core": "^6.18.2",
