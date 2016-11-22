@@ -49,5 +49,8 @@ jspm_packages
 #bundle
 public/js/bundle.js
 
-#local config
-config/local.js
+#local configs
+config/local*.js
+
+#sequelize executed migrations list
+sequelizeMeta.json

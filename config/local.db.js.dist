@@ -1,0 +1,10 @@
+/**
+ * for migrations
+ */
+
+module.exports = {
+    production: {
+        url: 'postgres://site:12345@localhost:5432/site',
+        dialect: 'postgres'
+    }
+}
