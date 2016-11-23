@@ -21,7 +21,7 @@ export default function(state = initialState, action) {
             var newState = Object.assign({}, state, { authorized: false, authToken: null, refreshtoken: null })
             return newState;
         case AUTH_CHECK:
-            var newState = Object.assign({}, state, { authorized: action.data.authorized, checked: true })
+            var newState = Object.assign({}, state, { authorized: action.data.authorized, authToken: action.data.authToken || null, checked: true })
             return newState;
     }
 

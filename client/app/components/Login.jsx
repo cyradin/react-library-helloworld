@@ -12,13 +12,10 @@ var classes = new BEMHelper({
 
 @mixin(formData)
 class Login extends React.Component {
-    componentWillMount() {
+    render() {
         if (this.props.auth.authorized) {
             browserHistory.goBack();
         }
-    }
-
-    render() {
         return (
             <div>
                 <form {...classes({ modifiers: 'login' })} onChange={this.updateFormData.bind(this)} onSubmit={this.onSubmit}>

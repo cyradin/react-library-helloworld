@@ -15,9 +15,18 @@ router.use(function (req, res, next) {
 router.use(function (err, req, res, next) {
     if (err instanceof Error) {
         res.status(err.status);
-        res.json({ success: false, error: { code: err.code, message: err.message } });
+
+        var errorData = { code: err.code, message: err.message };
+        if (err.errors) {
+            errorData.fields = {};
+            for (var i = 0; i < err.errors.length; i++) {
+                errorData.fields[err.errors[i].field] = err.errors[i].messages;
+            }
+        }
+        res.json({ success: false, error: errorData });
+    } else {
+        next();
     }
-    next();
 });
 
 module.exports = router;

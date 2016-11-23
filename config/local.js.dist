@@ -3,6 +3,8 @@ module.exports = {
     db: require('./local.db'),
     jwt: {
         secret: 'helloworld',
+        issuer: 'localhost',
+        audience: 'localhost',
         authTokenOptions: {
             algorithm: 'HS256',
             expiresIn: 600,

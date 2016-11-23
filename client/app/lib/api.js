@@ -1,4 +1,5 @@
 import request from 'browser-request';
+import store from '@app/store';
 
 const API_VERSION = 'v1';
 
@@ -16,7 +17,14 @@ function isSuccessful (response, data) {
 function sendRequest (options, callback) {
     options = Object.assign({}, defaults, options);
 
-    request(options, function(err, response, data) {
+    var state = store.getState();
+    if (state.auth.authToken) {
+        options.headers = {
+            Authorization: 'JWT ' + state.auth.authToken
+        }
+    }
+
+    request(options, function (err, response, data) {
         if (! err && isSuccessful(response, data)) {
             callback(data.data);
         }
