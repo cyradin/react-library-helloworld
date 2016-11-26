@@ -1,7 +1,7 @@
 var express = require('express'),
     router = express.Router(),
     errors = require('errors'),
-    v1router = require('./v1/router');
+    v1router = require('./v1');
 
 router.use('/v1', v1router);
 

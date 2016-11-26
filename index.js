@@ -1,18 +1,24 @@
-var path = require('path'),
-    fs = require('fs'),
-    express = require('express'),
-    app = express(),
-    bodyParser = require('body-parser'),
-    webpack = require('webpack'),
-    webpackDevMiddleware = require('webpack-dev-middleware'),
-    webpackHotMiddleware = require('webpack-hot-middleware');
-    apiRouter = require('./api/router');
+var path = require('path');
+var fs = require('fs');
+var express = require('express');
+var app = express();
+var bodyParser = require('body-parser');
+var webpack = require('webpack');
+var morgan = require('morgan');
+var webpackDevMiddleware = require('webpack-dev-middleware');
+var webpackHotMiddleware = require('webpack-hot-middleware');
+var logger = require('./logger');
+var config = require('./config');
+
+// request logger
+app.use(morgan("combined", { stream: { write: message => logger.info(message) } }));
 
 // parse application/json
 app.use(bodyParser.json());
 
 // using webpack dev server for development
 if (process.env.NODE_ENV === 'development') {
+    logger.info('development environment')
     const config = require(path.resolve(__dirname, 'webpack.config.js'));
     const compiler = webpack(config);
     const middleware = webpackDevMiddleware(compiler, {
@@ -27,28 +33,32 @@ if (process.env.NODE_ENV === 'development') {
         }
     });
     app.use(middleware);
+    logger.debug('Middlewares: "dev" applied succesfully');
     app.use(webpackHotMiddleware(compiler));
+    logger.debug('Middlewares: "hot" applied succesfully');
+} else {
+    logger.info('production environment')
 }
 
 // serving static files
 app.use(express.static(__dirname + '/public'));
+logger.debug('Middlewares: "express.static" applied succesfully');
 
 // loading all middlewares
-var middlewares = fs.readdirSync('middlewares');
-for (var i = 0; i < middlewares.length; i++) {
-    app.use(require(path.resolve('./middlewares/', middlewares[i])));
-}
+require('./middlewares')(app);
 
-app.use('/api', apiRouter);
+app.use('/api', require('./api'));
+logger.debug('Routes: "/api/*" enabled');
 
 app.all('*', function response(req, res) {
     res.sendFile(path.join(__dirname, 'public/index.html'));
 });
+logger.debug('Routes: "/" enabled');
 
-var port = process.env.NODE_PORT || 3000;
+var port = process.env.NODE_PORT || config.app.port || 3000;
 
-app.listen(port, function() {
-    console.log('App listening on port ' + port);
+app.listen(port, function () {
+    logger.info('Server: started on port ' + port);
 });
 
 module.exports = app;

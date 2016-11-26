@@ -1,5 +1,5 @@
 /**
- * Forms validation atuloader. Exports all files in this folder as an object with keys = basenames of this files
+ * Forms validation autoloader. Exports all files in this folder as an object with keys = basenames of this files
  */
 'use strict';
 
