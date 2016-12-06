@@ -3,14 +3,10 @@ var express = require('express'),
     _ = require('underscore'),
     jwt = require('jsonwebtoken'),
     errors = require('errors'),
-    models = require('../../models'),
+    models = require('../../../models'),
     validate = require('express-validation'),
-    forms = require('../../forms'),
-    utils = require('../../lib/utils');
-
-var testData = [
-    { id: 1, username: 'admin', password: '1234' },
-];
+    forms = require('../../../forms'),
+    utils = require('../../../lib/utils');
 
 router.post('/login', validate(forms.login), function (req, res, next) {
     models.user.findOne({

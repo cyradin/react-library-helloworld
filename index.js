@@ -9,6 +9,7 @@ var webpackDevMiddleware = require('webpack-dev-middleware');
 var webpackHotMiddleware = require('webpack-hot-middleware');
 var logger = require('./logger');
 var config = require('./config');
+var routes = require('./routes');
 
 // request logger
 app.use(morgan("combined", { stream: { write: message => logger.info(message) } }));
@@ -47,13 +48,7 @@ logger.debug('Middlewares: "express.static" applied succesfully');
 // loading all middlewares
 require('./middlewares')(app);
 
-app.use('/api', require('./api'));
-logger.debug('Routes: "/api/*" enabled');
-
-app.all('*', function response(req, res) {
-    res.sendFile(path.join(__dirname, 'public/index.html'));
-});
-logger.debug('Routes: "/" enabled');
+app.use(routes);
 
 var port = process.env.NODE_PORT || config.app.port || 3000;
 

@@ -5,8 +5,8 @@
 
 var express = require('express');
 var router = express.Router();
-var logger = require('../../logger');
-var utils = require('../../lib/utils');
+var logger = require('../../../logger');
+var utils = require('../../../lib/utils');
 
 
 router.use(function (req, res, next) {
