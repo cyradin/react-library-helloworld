@@ -15,7 +15,7 @@ router.use(function (req, res, next) {
 logger.debug('Middlewares: "/api/v1 key check" applied succesfully');
 
 utils.requireFolder(__dirname, function (file, i) {
-    router.use(file);
+    router.use('/' + i, file);
     logger.debug('Routes: "/api/v1/' + i + '" enabled');
 });
 
