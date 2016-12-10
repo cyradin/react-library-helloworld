@@ -5,6 +5,10 @@
 module.exports = {
     production: {
         url: 'postgres://site:12345@localhost:5432/site',
-        dialect: 'postgres'
+        dialect: 'postgres',
+        migrationStorage: 'json',
+        migrationStoragePath: 'sequelizeMeta.json',
+        migrationStorageTableName: 'sequelize_meta',
+        logging: false
     }
 }

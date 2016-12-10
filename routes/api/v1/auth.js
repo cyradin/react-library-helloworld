@@ -18,7 +18,7 @@ router.post('/login', validate(forms.login), function (req, res, next) {
         if (!user) {
             return next(new errors.Http401Error());
         }
-        console.dir(user);
+
         var payload = { id: user.id, username: user.username };
         try {
             res.json({
@@ -47,6 +47,7 @@ router.post('/check', function (req, res) {
         json.data.authToken = jwt.sign({ id: decoded.id, username: decoded.username }, req.config.jwt.secret, req.config.jwt.authTokenOptions);
     } catch (err) {
         json.data.authorized = false;
+        json.data.authToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJhZG1pbiIsImlhdCI6MTQ4MTA2MjcyOCwiZXhwIjoxNDgxMTQ5MTI4fQ.fsCdwzlZHLvcWK7DAE0YnFo4-m6k-PudF5BBSWyKpDI';
     }
     res.json(json);
 });

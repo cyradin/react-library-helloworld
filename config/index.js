@@ -1,4 +1,4 @@
-var merge = require('merge-deep');
+var merge = require('deepmerge');
 var path = require('path');
 var dateFormat = require('../lib/date_format');
 
@@ -6,7 +6,7 @@ var timestamp = function() {
     return dateFormat(new Date(), 'yyyy-mm-dd HH:MM:ss.l');
 }
 
-module.exports = merge({
+module.exports = merge.all([{
     app: {
         port: 3000
     },
@@ -38,4 +38,7 @@ module.exports = merge({
             }
         ]
     }
-}, require('./local'));
+}, require('./local'), require('./test.js')], { arrayMerge: function(dest, source) {
+    // to just overwrite arrays
+    return source;
+} });

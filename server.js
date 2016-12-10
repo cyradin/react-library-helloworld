@@ -10,7 +10,8 @@ var child = new (forever.Monitor)('./index.js', {
         'client',
         'public',
         'node_modules',
-        'log'
+        'log',
+        'test'
     ],
     watchDirectory: __dirname      // Top-level directory to watch from.
 });
